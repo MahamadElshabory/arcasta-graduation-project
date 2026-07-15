@@ -1,0 +1,90 @@
+CREATE TABLE users (
+    userID VARCHAR(20) PRIMARY KEY,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    passwordd VARCHAR(100) NOT NULL,
+    first_name VARCHAR(25) NOT NULL,
+    last_name VARCHAR(25) NOT NULL,
+    address VARCHAR(50) NOT NULL,
+    phone VARCHAR(12)
+);
+
+
+CREATE TABLE suppliers (
+    supplierID VARCHAR(20) PRIMARY KEY,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    passwordd VARCHAR(100) NOT NULL,
+    first_name VARCHAR(25) NOT NULL,
+    last_name VARCHAR(25) NOT NULL,
+    address VARCHAR(50) NOT NULL,
+    phone VARCHAR(12) NOT NULL
+);
+
+
+CREATE TABLE products (
+    productID VARCHAR(20) PRIMARY KEY,
+    supplierID VARCHAR(20) NOT NULL,
+    picture TEXT,
+    name VARCHAR(25) NOT NULL,
+    stock INT,
+    price DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    description VARCHAR(200),
+    FOREIGN KEY (supplierID) REFERENCES suppliers(supplierID) ON DELETE CASCADE
+);
+
+
+CREATE TABLE orders (
+    orderID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    productID VARCHAR(20) NOT NULL,
+    userID VARCHAR(20) NOT NULL,
+    order_date DATE,
+    price DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (productID) REFERENCES products(productID) ON DELETE CASCADE,
+    FOREIGN KEY (userID) REFERENCES users(userID) ON DELETE CASCADE
+);
+
+
+CREATE TABLE requests (
+    requestID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    supplierID VARCHAR(20) NOT NULL,
+    userID VARCHAR(20) NOT NULL,
+    product_name VARCHAR(25) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    statuss ENUM('Pending', 'Accepted', 'Rejected') DEFAULT 'Pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (supplierID) REFERENCES suppliers(supplierID) ON DELETE CASCADE,
+    FOREIGN KEY (userID) REFERENCES users(userID) ON DELETE CASCADE
+);
+
+CREATE TABLE payment_methods (
+    paymentID INT AUTO_INCREMENT PRIMARY KEY,
+    userID VARCHAR(20) NOT NULL ,
+    name_on_card VARCHAR(100) NOT NULL,
+    card_number VARCHAR(25) NOT NULL,
+    expire_month TINYINT NOT NULL CHECK (expire_month BETWEEN 1 AND 12),
+    expire_year SMALLINT NOT NULL,
+    cvv VARCHAR(4) NOT NULL,
+    is_default BOOLEAN DEFAULT FALSE,
+    card_type VARCHAR(20), -- e.g., 'Visa', 'MasterCard'
+    last_four CHAR(4) GENERATED ALWAYS AS (RIGHT(card_number, 4)) STORED,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userID) REFERENCES users(userID) ON DELETE CASCADE
+);
+
+CREATE TABLE dashboard (
+    dashID VARCHAR(20) PRIMARY KEY,
+    sales  DECIMAL(10,2),
+    pending DECIMAL(10,2),
+    dayorders DECIMAL(10,2),
+    requests JSON,
+    newcustomers INT,
+    totalcustomers INT
+    govermnates JSON,
+    bestselling JSON
+);
+
+CREATE TABLE addresses (
+    addressID
+    
+);
