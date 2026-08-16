@@ -94,6 +94,5 @@ Supplier Web Platform
         v
 Web Backend APIs -----------> Database
 
-## Possible next steps
-Add API documentation (OpenAPI spec)
-Add integration tests for the checkout flow
+
+
