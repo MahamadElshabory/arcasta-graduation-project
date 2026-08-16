@@ -8,6 +8,10 @@ ARcasta was developed as a team graduation project. The platform combines a cust
 
 ## Project Overview
 
+ARcasta is a furniture marketplace built to solve a real pain point in furniture shopping: you can't tell how a piece will actually look in your space from a product photo. The app combines standard mobile commerce with augmented-reality visualization, so customers can place furniture in their own room virtually before buying, plus AI-assisted product search and a chatbot for guided shopping.
+
+It was built by a team spanning mobile (Flutter), web, AI, and AR — I owned the backend layer that all of those surfaces depended on. That meant the actual challenge on my end wasn't any single feature in isolation, but designing an API contract stable and flexible enough for four different frontends, built by different teammates in parallel, to all consume correctly without breaking each other's work as the project evolved.
+
 Buying furniture online can be difficult because customers cannot easily imagine how a product will look inside their own space.
 
 ARcasta addresses this problem by allowing users to:
@@ -24,6 +28,18 @@ ARcasta addresses this problem by allowing users to:
 Suppliers can use the web platform to manage products and related marketplace data.
 
 ---
+## My role — Backend
+Authentication: signup/login, OTP verification, password recovery
+Customer profile management
+Shopping cart, favorites, and checkout flow
+Shipping addresses and payment method management
+Product review system
+Marketplace product data endpoints
+Chatbot integration for product search
+
+## What I focused on
+
+Keeping the backend contract consistent and well-documented enough that mobile, web, and AI teammates could build against it independently without constant back-and-forth — and handling the auth/checkout flow correctly, since it touches every other part of the system.
 
 ## Main Features
 
@@ -59,28 +75,7 @@ Suppliers can use the web platform to manage products and related marketplace da
 
 ---
 
-## My Contribution
 
-I worked primarily as the **Mobile Backend Developer** for this team project.
-
-My responsibilities included:
-
-- Developing JavaScript/Node.js backend functionality for mobile users
-- Implementing customer registration and login
-- Building OTP verification and password-recovery workflows
-- Developing product and marketplace endpoints
-- Implementing cart and favorites functionality
-- Building checkout and payment-method workflows
-- Implementing shipping-address management
-- Developing product-review functionality
-- Implementing customer profile editing
-- Integrating database operations
-- Connecting mobile backend services with the AI chatbot
-- Collaborating with the mobile, web, AI, AR, and 3D teams through Git and GitHub
-
-> Other parts of the system, including portions of the Flutter UI, supplier website, AI models, AR functionality, and 3D-model generation, were developed collaboratively by other members of the graduation-project team.
-
----
 
 ## High-Level Architecture
 
